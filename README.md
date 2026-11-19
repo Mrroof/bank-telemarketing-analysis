@@ -56,3 +56,18 @@ requirements.txt                     # Python dependencies
 ## Reproducibility
 
 Run the command above from the repository root. The script regenerates the analysis outputs locally in `outputs/`; generated outputs are not committed by default. The GitHub Actions validation workflow checks the project on repository updates.
+
+## Business insights
+
+- The demo subscription rate is **14.9%**, so a model that simply predicts "no" would appear accurate while failing to identify potential subscribers.
+- Logistic regression slightly outperformed the random-forest candidate on validation average precision (**0.425 vs 0.418**). The more complex model did not earn its added complexity on this sample.
+- On the untouched test set, the selected model recorded **0.316 average precision** and **0.635 ROC AUC**. At the validation-selected threshold of **0.65**, subscriber precision was **30%** and recall was **38%**.
+- This operating point misses many actual subscribers and sends a substantial share of contacted leads that do not subscribe. It is not strong enough to justify automated campaign allocation.
+
+## Practical recommendations
+
+1. Treat the model as an exploratory prioritisation aid, not an automated decision-maker.
+2. Before any pilot, choose a threshold using campaign capacity, contact cost and the relative value of a successful subscription.
+3. Track lift and conversion by score band in a controlled pilot, and compare against the existing campaign selection process.
+4. Re-test on a larger, time-ordered dataset and monitor performance across customer groups.
+5. Keep post-call fields such as call duration out of any pre-call scoring process.
