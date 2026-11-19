@@ -1,3 +1,5 @@
+[![Portfolio validation](https://github.com/Mrroof/bank-telemarketing-analysis/actions/workflows/portfolio-validation.yml/badge.svg)](https://github.com/Mrroof/bank-telemarketing-analysis/actions)
+
 # Bank Telemarketing Campaign Analysis
 
 > **Portfolio case study · Python · pandas · scikit-learn · Matplotlib**
@@ -15,7 +17,7 @@ This project explores patterns in a synthetic term-deposit campaign dataset and 
 - A class-weighted logistic regression achieved **0.635 ROC AUC** and **0.316 average precision** on the held-out test sample.
 - At the validation-selected threshold of 0.65, subscriber recall was **38%** and precision was **30%**.
 
-<image src="docs/telemarketing-performance.svg" alt="Synthetic telemarketing model performance metrics" />
+![Synthetic telemarketing model performance metrics](docs/telemarketing-performance.svg)
 
 The classifier still misses many subscribers and should not be described as a high-performing targeting model.
 
