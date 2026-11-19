@@ -42,3 +42,17 @@ Outputs are written to `outputs/`, including the model comparison, classificatio
 
 ## Limitations and responsible use
 The CSV is synthetic and does not represent a real bank campaign or real customers. The performance metrics are illustrative. A practical campaign model needs representative data, time-aware validation, calibration, a threshold based on campaign capacity and contact costs, and monitoring for drift and unfair impact.
+
+## Repository structure
+
+```text
+data/telemarketing_demo.csv          # Synthetic campaign records
+src/analyze_campaign.py              # Analysis and model comparison
+docs/telemarketing-performance.svg   # Report-ready model summary
+requirements.txt                     # Python dependencies
+.github/workflows/                   # Automated repository validation
+```
+
+## Reproducibility
+
+Run the command above from the repository root. The script regenerates the analysis outputs locally in `outputs/`; generated outputs are not committed by default. The GitHub Actions validation workflow checks the project on repository updates.
