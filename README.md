@@ -1,29 +1,40 @@
-# Bank Telemarketing Campaign Performance Analysis
+# Bank Telemarketing Campaign Analysis
 
-## Purpose
-Explore customer and campaign characteristics associated with subscription outcomes and demonstrate an imbalanced classification workflow.
+> **Portfolio case study · Python · pandas · scikit-learn · Matplotlib**
 
-## Data notice
-`data/telemarketing_demo.csv` is **synthetic demonstration data** generated for this portfolio. It is not a bank's customer data and does not reproduce a real campaign. Treat all results as educational examples.
+## Executive summary
+This project explores patterns in a synthetic term-deposit campaign dataset and demonstrates how to evaluate a classifier when positive outcomes are relatively uncommon. It emphasizes recall, precision and average precision rather than relying on accuracy alone.
 
-## Questions
-- What is the demo subscription rate?
-- How does subscription vary by contact method and job category?
-- How is the number of campaign contacts associated with subscription?
-- How does a class-weighted classifier perform on a held-out sample?
+## Business questions
+- How does the demo subscription rate vary by contact channel and job category?
+- How does campaign contact frequency relate to subscription?
+- How well can a pre-call model identify likely subscribers?
+
+## Demonstration findings
+- Overall synthetic subscription rate: **14.9%** (1,200 records).
+- A class-weighted logistic regression achieved **0.635 ROC AUC** and **0.316 average precision** on the held-out test sample.
+- At the validation-selected threshold of 0.65, subscriber recall was **38%** and precision was **30%**.
+
+<image src="docs/telemarketing-performance.svg" alt="Synthetic telemarketing model performance metrics" />
+
+The classifier still misses many subscribers and should not be described as a high-performing targeting model.
 
 ## Method
-The script uses a stratified train/test split, a validation split to select a probability threshold, class-weighted logistic regression and ROC AUC, average precision, precision, recall and F1 reporting. Call duration is excluded because it is only known after a call and would leak post-call information into a pre-call targeting model.
+1. Explore subscription rates by contact type and job category.
+2. Split the records into training and test sets using stratification.
+3. Select a probability threshold using a separate validation split.
+4. Fit class-weighted logistic regression.
+5. Evaluate ROC AUC, average precision, precision, recall, F1 and the confusion matrix.
 
-## Tools
-Python, pandas, Matplotlib and scikit-learn.
+**Leakage control:** call duration is excluded because it is only known after a call and would leak post-call information into a pre-call targeting model.
 
-## Run
+## Run locally
 ```bash
 pip install -r requirements.txt
 python src/analyze_campaign.py
 ```
+
 Outputs are written to `outputs/`.
 
 ## Limitations
-The synthetic data-generating process is artificial. Metrics and patterns are not evidence about real customers or a real bank. Threshold choice should reflect campaign capacity and the relative costs of missed subscribers and unnecessary contacts.
+The CSV is synthetic and does not represent a real bank campaign or real customers. The performance metrics are illustrative. A practical campaign model needs representative data, time-aware validation, calibration, a threshold based on campaign capacity and contact costs, and monitoring for drift and unfair impact.
